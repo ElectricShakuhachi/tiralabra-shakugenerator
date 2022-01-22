@@ -11,7 +11,7 @@
 ## Topic of Project: Musical Accompaniment generator for ShakuNotator
 
 In the course "Ohjelmistotekniikka", I coded the application [ShakuNotator](https://github.com/ElectricShakuhachi/ot-harjoitustyo),
-which proved to be a large effort, still under development for personal use after the course. The application is sheet music notation software for Japanese *shakuhachi* -bamboo flute.
+which proved to be a large effort, still under development for personal use after the course. ShakuNotator is sheet music notation software for Japanese *shakuhachi* -bamboo flute.
 As the project for this course, I am developing a tool that can later be integrated to the aforementioned project. It is a Markov chain music generation tool that gets one measure of musical notes in one or multiple parts as input and generates viable accompaniment for them.
 
 The reason for it to be one measure as opposed to an entire accompaniment is that the intended usage for this is not as much automatic musical composition, but rather an aid for faster manual composition. An analogue could be for instance how auto-suggestions work in a programmers workflow. The intention is not to have a computer write code for you, but to provide a quickhand for common possibilities based on data. Similarly, the ShakuGenerator is intended to generate helpful suggestions on accompaniment for shakuhachi music. 
