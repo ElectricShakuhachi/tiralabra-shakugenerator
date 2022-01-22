@@ -1,6 +1,6 @@
 # Report - Week 1
 
-Work hours = 5
+**Total work hours = 5**
 
 | sun | mon | tue | wed | thu | fri | sat |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
