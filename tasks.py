@@ -1,10 +1,9 @@
 from invoke import task
 import os
-import shutil
 
 @task
-def start(ctx):
-    ctx.run("python3 src/index.py")
+def start(ctx, count=30):
+    ctx.run(f"python3 src/index.py {count}")
 
 @task
 def test(ctx):

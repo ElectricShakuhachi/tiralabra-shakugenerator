@@ -27,10 +27,12 @@ Currently (end of week 3) the training data is too short - during project week 4
 use invoke rule to run program by command:
 
 ```bash
-poetry run invoke start (integer)
+poetry run invoke start --count=30
 ```
 
-replace (integer) with lenght of music to be generated (number of notes)
+replace 30 with lenght of music to be generated (number of notes)
+
+When running without --count flag with integer, program will generate a default amount of 30 notes
 
 Currently (week 3) program only generates same-lenght notes but rhytm variance will be added later. Currently the notes are only generated into a csv temporary file called output.csv. On every run this file will be replaced unless moved or renamed. Later running program will generate a midi file instead.
 
@@ -55,3 +57,9 @@ Coverage report will be generate in html format to the folder "htmlcov" located 
 
 NOTE: Accurate coverage is provided only by the invoke commands coverage and coverage-report, not in console when running invoke test,
 which appears to show lower coverage than actual.
+
+Run lint by:
+
+```bash
+poetry run invoke lint
+```
