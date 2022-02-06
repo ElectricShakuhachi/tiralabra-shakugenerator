@@ -6,7 +6,12 @@
 - Programming language: Python
 - Additional possible review languages: C
 - Human Language Used: English, reviews for projects in Finnish possible
-- Sources: To be determined
+- Sources: 
+    - [wikipedia page on Markov Chains](https://en.wikipedia.org/wiki/Markov_chain)
+    - [wikipedia page on trie trees](https://en.wikipedia.org/wiki/Trie)
+    - note : in this case wikipedia is an adequate source, because
+    working implementation on principles learned there is enough
+    proof of concept to validate learning based on the articles
 
 ## Topic of Project: Musical Accompaniment generator for ShakuNotator
 
