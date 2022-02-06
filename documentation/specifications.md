@@ -10,6 +10,10 @@
 
 ## Topic of Project: Musical Accompaniment generator for ShakuNotator
 
+### ADDITIONAL NOTE: 
+
+**The explanation below talks about additional functionalities, but for the purposes of the "harjoitustyö" -project, basic Markov chain music generation utilizing a trie-tree -structure is developed first and any additional features will be done later if there is time!**
+
 In the course "Ohjelmistotekniikka", I coded the application [ShakuNotator](https://github.com/ElectricShakuhachi/shakunotator),
 which proved to be a large effort, still under development for personal use after the course. ShakuNotator is sheet music notation software for Japanese *shakuhachi* -bamboo flute.
 As the project for this course, I am developing a tool that can later be integrated to the aforementioned project. It is a Markov chain music generation tool that gets one measure of musical notes in one or multiple parts as input and generates viable accompaniment for them.
