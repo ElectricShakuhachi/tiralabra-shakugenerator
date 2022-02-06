@@ -2,8 +2,7 @@ from generate import ShakuGenerator
 from trie import TrieTree
 
 if __name__ == "__main__":
-    #file = input("Specify training csv: ")
-    file = "1.csv"
+    file = "training_data.csv"
     with open(file, 'r') as f:
         data = f.read().replace("\n", "")
     ints = data.split(",")
