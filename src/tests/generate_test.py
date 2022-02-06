@@ -111,8 +111,3 @@ class TestShakuGenerator(unittest.TestCase):
 
     def test_generate_note_returns_exact_match_to_second_level_one_match(self):
         self.assertEqual(self.generator.generate_note([90,90,67]), 89)
-
-#Dev note:
-#Code coverage looks low when running invoke test,
-#see true number 98% (at least currently) when using
-#invoke coverage-report
