@@ -35,4 +35,6 @@ I wrote a couple of mistaken test prints inside code to see how it functions and
 
 ## What next
 
-Developing functionality to save a list of generated midi integers and then another class to converting that to a playable midi file. And making sure testing is written pretty much together with class development.
+Firstly, I will use actual shakuhachi music to make an actual training file. Right now the training file and output files are just csv of midi integer numbers. Next week they will be .shaku -files, where the notes will also have info on their duration, and the music will be actual shakuhachi music and not random midi integers like this week, that I've just made for initial testing.
+
+After that the next thing to do is developing functionality for converting the generated file to a playable midi file. (of course not forgetting to keep writing test cases as development goes on)
