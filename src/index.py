@@ -2,6 +2,15 @@ from generate import ShakuGenerator
 from trie import TrieTree
 
 if __name__ == "__main__":
-    generator = ShakuGenerator()
-    trie = TrieTree() 
-    # this is just initialized, so of course, generate the model too here
+    #file = input("Specify training csv: ")
+    file = "1.csv"
+    with open(file, 'r') as f:
+        data = f.read().replace("\n", "")
+    ints = data.split(",")
+    for i in range(len(ints)):
+        ints[i] = int(ints[i])
+    trie = TrieTree()
+    trie.feed_data(ints)
+    #generator = ShakuGenerator(trie)
+    #print("Note:")
+    #print(generator.generate_note())
