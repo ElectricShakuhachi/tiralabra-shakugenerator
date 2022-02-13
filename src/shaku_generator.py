@@ -3,7 +3,7 @@ import dotenv
 import glob
 from random import choice, randint
 from entities.trie import TrieTree
-from services.input_converter import TrainingInputConverter
+from services.input_converter import ShakuConverter
 
 class ShakuGenerator:
     """Class for generating musical notes based on previous sequences stored in a trie tree
@@ -18,12 +18,12 @@ class ShakuGenerator:
         self.pitch_trie = TrieTree()
         self.lenght_trie = TrieTree()
         self._populate_trees()
-        self.pitch_range = list(range(int(os.getenv("SHAKUGEN_LOWEST_PITCH"), int(os.getenv("SHAKUGEN_HIGHEST_PITCH"))+1)))
+        self.pitch_range = list(range(int(os.getenv("SHAKUGEN_LOWEST_PITCH")), int(os.getenv("SHAKUGEN_HIGHEST_PITCH"))+1))
         self.lenght_range = os.getenv("SHAKUGEN_LENGHTS").split(",")
 
     def _populate_trees(self):
         filelist = glob.glob(os.getenv("SHAKUGEN_TRAINING_FILES")) 
-        converter = TrainingInputConverter()
+        converter = ShakuConverter()
         pitches = converter.get_pitch_lists(filelist)
         lenghts = converter.get_lenght_lists(filelist)
         self.pitch_trie.feed_data(pitches)
@@ -67,7 +67,10 @@ class ShakuGenerator:
             else:
                 node = node.nodes[previous[i]]
             i += 1
-        index = randint(1, node.repeats["total"])
+        try:
+            index = randint(1, node.repeats["total"])
+        except:
+            raise ValueError("Training data likely insufficient in trie")
         for key, value in node.repeats.items():
             index -= value
             if index <= 0:

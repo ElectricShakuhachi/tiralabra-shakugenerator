@@ -31,12 +31,12 @@ class Interface:
 
     def generate_output(self, output_type: str="shaku", measure_count: int=1):
         part = {"pitches": [], "lenghts": []}
-        left_in_measure = os.getenv("SHAKUGEN_MEASURE_LENGHT")
+        left_in_measure = int(os.getenv("SHAKUGEN_MEASURE_LENGHT"))
         while measure_count > 0:
             note = self.generator.generate_note(part)
             part["pitches"].append(note[0])
             part["lenghts"].append(note[1])
-            left_in_measure -= note[1]
+            left_in_measure -= int(note[1])
             if left_in_measure <= 0:
                 measure_count -= 1
                 left_in_measure = os.getenv("SHAKUGEN_MEASURE_LENGHT")
