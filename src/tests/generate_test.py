@@ -1,6 +1,6 @@
 import unittest
-from generate import ShakuGenerator
-from trie import TrieTree
+from shaku_generator import ShakuGenerator
+from entities.trie import TrieTree
 
 class TestShakuGenerator(unittest.TestCase):
     def setUp(self):
