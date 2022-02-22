@@ -30,7 +30,7 @@ class TrieTree:
         i = 0
         node = self.root
         while i < 4:
-            if seq[i] not in node.nodes:
+            if seq[i] not in node.nodes.items():
                 node.repeats[seq[i]] = 1
                 node.nodes[seq[i]] = TrieNode(seq[i])
                 node = node.nodes[seq[i]]

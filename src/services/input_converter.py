@@ -17,7 +17,7 @@ class ShakuConverter:
         return data_array
 
     def get_pitch_lists(self, filelist):
-        return self._get_data_list(filelist, "pitch")
+        return(self._get_data_list(filelist, "pitch"))
 
     def get_lenght_lists(self, filelist):
         return self._get_data_list(filelist, "lenght")

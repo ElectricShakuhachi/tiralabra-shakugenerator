@@ -12,17 +12,16 @@ class ShakuGenerator:
         trie: Trie-tree data structure received as constructor parameter
     """
     def __init__(self):
-        """Class constructor, saves given trie tree as class attribute"""
         dirname = os.path.dirname(__file__)
         dotenv.load_dotenv(dotenv_path=os.path.join(dirname, "..", ".env"))
         self.pitch_trie = TrieTree()
         self.lenght_trie = TrieTree()
         self._populate_trees()
         self.pitch_range = list(range(int(os.getenv("SHAKUGEN_LOWEST_PITCH")), int(os.getenv("SHAKUGEN_HIGHEST_PITCH"))+1))
-        self.lenght_range = os.getenv("SHAKUGEN_LENGHTS").split(",")
+        self.lenght_range = [int(i) for i in os.getenv("SHAKUGEN_LENGHTS").split(",")]
 
     def _populate_trees(self):
-        filelist = glob.glob(os.getenv("SHAKUGEN_TRAINING_FILES")) 
+        filelist = glob.glob(os.getenv("SHAKUGEN_TRAINING_FILES"))
         converter = ShakuConverter()
         pitches = converter.get_pitch_lists(filelist)
         lenghts = converter.get_lenght_lists(filelist)
@@ -30,10 +29,13 @@ class ShakuGenerator:
         self.lenght_trie.feed_data(lenghts)
 
     def _get_random_start_data(self, type: str):
+        #later do not give any random, give one that exists in trie
         if type == "pitch":
             return choice(self.pitch_range)
         elif type == "lenght":
-            return choice(self.lenght_range)
+            thing = choice(self.lenght_range)
+            print(f"note lenght is {thing}")
+            return(thing)
         else:
             raise ValueError("Requested unknown type of data")
 
@@ -41,8 +43,8 @@ class ShakuGenerator:
         """Returns a midi integer based on data in trie and data given
 
         Args:
-            type: 
-            previous: List of previous notes after which to generate new note. Defaults to None.
+            type: pitch if type of data retrieved is a pitch, lenght if lenght
+            previous: List of previous data in sequence. Defaults to None.
 
         Raises:
             ValueError: If given sequence is too long (more than 3)
@@ -80,3 +82,12 @@ class ShakuGenerator:
         pitch = self._get_next("pitch", previous["pitches"])
         lenght = self._get_next("lenght", previous["lenghts"])
         return (pitch, lenght)
+
+"""
+Right now when getting next we always return to the root node unless we find
+and exact match to the sequence.
+-> change this so that if we don't find that sequence, we skip the first value
+and try again. If that all fails, we just get a random note since previous has
+disappeared.
+
+"""

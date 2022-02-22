@@ -5,31 +5,31 @@ from entities.trie import TrieTree
 from shaku_generator import ShakuGenerator
 from services.filing import ShakuFiling
 
-class InterfaceManager:
+class ShakuGeneratorInterfaceManager:
     def __init__(self, interface_type="plugin"):
         self.interfaces = {"cli": Cli, "plugin": NonInteractive}
         if interface_type not in self.interfaces:
             raise ValueError("Unsupported interface type requested")
         self.interface_type = interface_type
 
-    def run(self):
-        self.interface = self.interfaces[self.interface_type]() #Will this run? (providing class type from dict and then initializing it here)
-        self.interface.generate_output()
+    def start(self):
+        self.interface = self.interfaces[self.interface_type]()
+        self.interface.run()
 
 class Interface:
     def __init__(self):
         self.generator = ShakuGenerator()
 
-    def _handle_output(self, data: dict, output_type: str="MIDI"):
-        if output_type == "MIDI":
-            ShakuFiling().save_midi(data)
+    def _handle_output(self, data: dict, output_type: str):
+        if output_type == "wav":
+            ShakuFiling().save_wav(data)
         elif output_type == "shaku":
             #data = ShakuConverter().convert_simple_dict_to_shaku(data)
             #ShakuFiling().save_shaku(data)
             print("Saving in .shaku not implemented yet")
             exit()
 
-    def generate_output(self, output_type: str="shaku", measure_count: int=1):
+    def _generate_output(self, output_type: str, measure_count: int=1):
         part = {"pitches": [], "lenghts": []}
         left_in_measure = int(os.getenv("SHAKUGEN_MEASURE_LENGHT"))
         while measure_count > 0:
@@ -39,7 +39,8 @@ class Interface:
             left_in_measure -= int(note[1])
             if left_in_measure <= 0:
                 measure_count -= 1
-                left_in_measure = os.getenv("SHAKUGEN_MEASURE_LENGHT")
+                left_in_measure = int(os.getenv("SHAKUGEN_MEASURE_LENGHT"))
+        print(part)
         self._handle_output(part, output_type)
 
 
@@ -48,17 +49,17 @@ class Cli(Interface):
         super().__init__()
 
     def run(self):
-        types = {"1": "MIDI", "2": "shaku", "3": "csv"}
+        types = {"1": "wav", "2": "shaku", "3": "csv", "4": "midi"}
         output_type = None
         while output_type not in types:
             print("Choose type of output")
-            output_type = input("(1 = MIDI, 2 = shaku, 3 = csv, 0 = quit) :")
+            output_type = input("(1 = wav, 2 = shaku, 3 = csv, 4 = midi 0 = quit) :").strip()
             if output_type == "0":
                 exit()
         output_type = types[output_type]
         count = -1
         while count is not 0:
-            count = input("How many measures should be generated? (0 to quit)")
+            count = input("How many measures should be generated? (0 to quit)").strip()
             try:
                 count = int(count)
             except:

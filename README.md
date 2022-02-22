@@ -27,14 +27,12 @@ Currently (end of week 3) the training data is too short - during project week 4
 use invoke rule to run program by command:
 
 ```bash
-poetry run invoke start --count=30
+poetry run invoke start --count=1
 ```
 
-replace 30 with lenght of music to be generated (number of notes)
+Replace 1 with lenght of music to be generated (number of measures)
 
-When running without --count flag with integer, program will generate a default amount of 30 notes
-
-Currently (week 3) program only generates same-lenght notes but rhytm variance will be added later. Currently the notes are only generated into a csv temporary file called output.csv. On every run this file will be replaced unless moved or renamed. Later running program will generate a midi file instead.
+When running without --count flag with integer, program will generate a default amount of 1 measure lenght of notes
 
 ## Testing
 

@@ -53,6 +53,14 @@ python-versions = ">=3.7"
 toml = ["tomli"]
 
 [[package]]
+name = "fluidsynth"
+version = "0.2"
+description = "Fluidsynth bindings"
+category = "main"
+optional = false
+python-versions = "*"
+
+[[package]]
 name = "iniconfig"
 version = "1.1.1"
 description = "iniconfig: brain-dead simple config-ini parsing"
@@ -99,6 +107,14 @@ optional = false
 python-versions = "*"
 
 [[package]]
+name = "midi2audio"
+version = "0.1.1"
+description = "Easy to use MIDI to audio or playback via FluidSynth"
+category = "main"
+optional = false
+python-versions = "*"
+
+[[package]]
 name = "midiutil"
 version = "1.2.1"
 description = "A pure python library for creating multi-track MIDI files"
@@ -119,7 +135,7 @@ pyparsing = ">=2.0.2,<3.0.5 || >3.0.5"
 
 [[package]]
 name = "platformdirs"
-version = "2.5.0"
+version = "2.5.1"
 description = "A small Python module for determining appropriate platform-specific dirs, e.g. a \"user data dir\"."
 category = "dev"
 optional = false
@@ -219,7 +235,7 @@ python-versions = ">=2.6, !=3.0.*, !=3.1.*, !=3.2.*"
 
 [[package]]
 name = "typing-extensions"
-version = "4.0.1"
+version = "4.1.1"
 description = "Backported and Experimental Type Hints for Python 3.6+"
 category = "dev"
 optional = false
@@ -235,8 +251,8 @@ python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,>=2.7"
 
 [metadata]
 lock-version = "1.1"
-python-versions = "^3.8"
-content-hash = "6af62b7efbf8cf2f241a0314c810e8434beb5f2421e91815dd69c9ef5bc591ce"
+python-versions = "^3.9"
+content-hash = "ed87b3706cba08a264f1c1bb02d5fd724fa333411ebb68b15b777274a723e188"
 
 [metadata.files]
 astroid = [
@@ -298,6 +314,9 @@ coverage = [
     {file = "coverage-6.3.1-pp36.pp37.pp38-none-any.whl", hash = "sha256:463e52616ea687fd323888e86bf25e864a3cc6335a043fad6bbb037dbf49bbe2"},
     {file = "coverage-6.3.1.tar.gz", hash = "sha256:6c3f6158b02ac403868eea390930ae64e9a9a2a5bbfafefbb920d29258d9f2f8"},
 ]
+fluidsynth = [
+    {file = "fluidsynth-0.2.tar.gz", hash = "sha256:734948f8ebb1753fba741205d079c136c647a3a657400c61d33c8328166719eb"},
+]
 iniconfig = [
     {file = "iniconfig-1.1.1-py2.py3-none-any.whl", hash = "sha256:011e24c64b7f47f6ebd835bb12a743f2fbe9a26d4cecaa7f53bc4f35ee9da8b3"},
     {file = "iniconfig-1.1.1.tar.gz", hash = "sha256:bc3af051d7d14b2ee5ef9969666def0cd1a000e121eaea580d4a313df4b37f32"},
@@ -354,6 +373,10 @@ mccabe = [
     {file = "mccabe-0.6.1-py2.py3-none-any.whl", hash = "sha256:ab8a6258860da4b6677da4bd2fe5dc2c659cff31b3ee4f7f5d64e79735b80d42"},
     {file = "mccabe-0.6.1.tar.gz", hash = "sha256:dd8d182285a0fe56bace7f45b5e7d1a6ebcbf524e8f3bd87eb0f125271b8831f"},
 ]
+midi2audio = [
+    {file = "midi2audio-0.1.1-py2.py3-none-any.whl", hash = "sha256:762a2df3806d373f7f89962f22ecc6d3cb49f82ae4212fab560a479cbb6c9c08"},
+    {file = "midi2audio-0.1.1.tar.gz", hash = "sha256:b26590388e1f62753096b075b877e2529ff62faad00c07811ac8111a73e4a78a"},
+]
 midiutil = [
     {file = "MIDIUtil-1.2.1.tar.gz", hash = "sha256:79fa983bd1efc60785f68a8fe78fa8f45b8d7ec5898bf7cb7f3f7f3336d6a90a"},
 ]
@@ -362,8 +385,8 @@ packaging = [
     {file = "packaging-21.3.tar.gz", hash = "sha256:dd47c42927d89ab911e606518907cc2d3a1f38bbd026385970643f9c5b8ecfeb"},
 ]
 platformdirs = [
-    {file = "platformdirs-2.5.0-py3-none-any.whl", hash = "sha256:30671902352e97b1eafd74ade8e4a694782bd3471685e78c32d0fdfd3aa7e7bb"},
-    {file = "platformdirs-2.5.0.tar.gz", hash = "sha256:8ec11dfba28ecc0715eb5fb0147a87b1bf325f349f3da9aab2cd6b50b96b692b"},
+    {file = "platformdirs-2.5.1-py3-none-any.whl", hash = "sha256:bcae7cab893c2d310a711b70b24efb93334febe65f8de776ee320b517471e227"},
+    {file = "platformdirs-2.5.1.tar.gz", hash = "sha256:7535e70dfa32e84d4b34996ea99c5e432fa29a708d0f4e394bbcb2a8faa4f16d"},
 ]
 pluggy = [
     {file = "pluggy-1.0.0-py2.py3-none-any.whl", hash = "sha256:74134bbf457f031a36d68416e1509f34bd5ccc019f0bcc952c7b909d06b37bd3"},
@@ -394,8 +417,8 @@ toml = [
     {file = "toml-0.10.2.tar.gz", hash = "sha256:b3bda1d108d5dd99f4a20d24d9c348e91c4db7ab1b749200bded2f839ccbe68f"},
 ]
 typing-extensions = [
-    {file = "typing_extensions-4.0.1-py3-none-any.whl", hash = "sha256:7f001e5ac290a0c0401508864c7ec868be4e701886d5b573a9528ed3973d9d3b"},
-    {file = "typing_extensions-4.0.1.tar.gz", hash = "sha256:4ca091dea149f945ec56afb48dae714f21e8692ef22a395223bcd328961b6a0e"},
+    {file = "typing_extensions-4.1.1-py3-none-any.whl", hash = "sha256:21c85e0fe4b9a155d0799430b0ad741cdce7e359660ccbd8b530613e8df88ce2"},
+    {file = "typing_extensions-4.1.1.tar.gz", hash = "sha256:1a9462dcc3347a79b1f1c0271fbe79e844580bb598bafa1ed208b94da3cdcd42"},
 ]
 wrapt = [
     {file = "wrapt-1.13.3-cp27-cp27m-macosx_10_9_x86_64.whl", hash = "sha256:e05e60ff3b2b0342153be4d1b597bbcfd8330890056b9619f4ad6b8d5c96a81a"},
