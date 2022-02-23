@@ -43,7 +43,6 @@ class Interface:
         print(part)
         self._handle_output(part, output_type)
 
-
 class Cli(Interface):
     def __init__(self):
         super().__init__()

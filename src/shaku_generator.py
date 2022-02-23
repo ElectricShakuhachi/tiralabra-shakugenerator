@@ -29,7 +29,6 @@ class ShakuGenerator:
         self.lenght_trie.feed_data(lenghts)
 
     def _get_random_start_data(self, type: str):
-        #later do not give any random, give one that exists in trie
         if type == "pitch":
             return choice(self.pitch_range)
         elif type == "lenght":
@@ -69,6 +68,8 @@ class ShakuGenerator:
             else:
                 node = node.nodes[previous[i]]
             i += 1
+        print(self.pitch_trie)
+        exit()
         try:
             index = randint(1, node.repeats["total"])
         except:
@@ -89,5 +90,8 @@ and exact match to the sequence.
 -> change this so that if we don't find that sequence, we skip the first value
 and try again. If that all fails, we just get a random note since previous has
 disappeared.
+
+The root node doesn't seem to have a repeats["total"] value because now
+it fails for any time when there is more than one single note.
 
 """

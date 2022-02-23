@@ -16,6 +16,13 @@ class TrieNode:
         self.nodes = {}
         self.repeats = {}
 
+    def __str__(self):
+        node_string = f"Node:\n" 
+        node_string += f"{self.repeats}\n"
+        for node in self.nodes:
+            node_string += str(node)
+        return node_string
+
 class TrieTree:
     """Trie tree data structure with frequency mapping
     """
@@ -54,3 +61,9 @@ class TrieTree:
         for i in range(len(data) - 3):
             self._add_sequence(data[i:i+4])
         self._mark_probabilities(self.root)
+
+    def __str__(self):
+        trie_as_string = "################Trie Representation################\n"
+        trie_as_string += str(self.root)
+        trie_as_string += "##############Trie Representation Ends##############\n"
+        return trie_as_string
