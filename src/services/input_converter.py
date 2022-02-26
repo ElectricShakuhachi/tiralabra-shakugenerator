@@ -25,4 +25,3 @@ class ShakuConverter:
     def convert_simple_dict_to_shaku(data: dict):
         for key, pitch in enumerate(data["pitches"]):
             lenght = data["lenghts"][key]
-            

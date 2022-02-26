@@ -20,4 +20,4 @@ def coverage_report(ctx):
 
 @task
 def lint(ctx):
-    ctx.run("pylint src --ignore-patterns=py")
+    ctx.run("pylint src")
