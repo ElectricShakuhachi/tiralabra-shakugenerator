@@ -18,7 +18,8 @@ class TrieNode:
 
     def __str__(self):
         node_string = f"Node:\n" 
-        node_string += f"{self.repeats}\n"
+        node_string += f"Repeats: {self.repeats}\n"
+        node_string += "Children:\n"
         for node in self.nodes:
             node_string += str(node)
         return node_string
@@ -52,14 +53,18 @@ class TrieTree:
         for i in node.nodes.values():
             self._mark_probabilities(i)
 
-    def feed_data(self, data):
+    def _feed_one_list(self, midilist):
+        for i in range(len(midilist) - 3):
+            self._add_sequence(midilist[i:i+4])
+
+    def feed_data(self, list_of_midilists): #change name of this to "train tree" to emphasize fact that this is done once to prepare tree
         """Parse data into every sequence of 4 and form a trie tree of them
 
         Args:
-            data (list): MIDI integers
+            data (list): list of lists containing MIDI integers
         """
-        for i in range(len(data) - 3):
-            self._add_sequence(data[i:i+4])
+        for midilist in list_of_midilists:
+            self._feed_one_list(midilist)
         self._mark_probabilities(self.root)
 
     def __str__(self):

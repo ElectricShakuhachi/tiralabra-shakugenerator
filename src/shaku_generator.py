@@ -28,6 +28,9 @@ class ShakuGenerator:
         self.pitch_trie.feed_data(pitches)
         self.lenght_trie.feed_data(lenghts)
 
+        #DEBUG EVERY PART OF THIS
+
+
     def _get_random_start_data(self, type: str):
         if type == "pitch":
             return choice(self.pitch_range)
@@ -60,6 +63,8 @@ class ShakuGenerator:
             trie = self.pitch_trie
         elif type == "lenght":
             trie = self.lenght_trie
+        else:
+            raise ValueError("Unknown type of data requested")
         node = trie.root
         i = 0
         while i < len(previous):
@@ -68,8 +73,7 @@ class ShakuGenerator:
             else:
                 node = node.nodes[previous[i]]
             i += 1
-        print(self.pitch_trie)
-        exit()
+        # trie tree seems to be empty - causing this error - problem in populating trees likely responsible.
         try:
             index = randint(1, node.repeats["total"])
         except:

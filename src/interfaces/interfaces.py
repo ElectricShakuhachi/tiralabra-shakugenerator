@@ -48,28 +48,32 @@ class Cli(Interface):
         super().__init__()
 
     def run(self):
-        types = {"1": "wav", "2": "shaku", "3": "csv", "4": "midi"}
-        output_type = None
-        while output_type not in types:
-            print("Choose type of output")
-            output_type = input("(1 = wav, 2 = shaku, 3 = csv, 4 = midi 0 = quit) :").strip()
-            if output_type == "0":
-                exit()
-        output_type = types[output_type]
-        count = -1
-        while count is not 0:
-            count = input("How many measures should be generated? (0 to quit)").strip()
-            try:
-                count = int(count)
-            except:
-                print("Please input an integer value")
-                continue
-            if count < 0:
-                print("Usage : 0 = quit, 1 or higher = generate measures")
-            elif count > 0:
-                self._generate_output(output_type, count)
-                print("Generation done. Quitting...")
-                exit(0)
+        # types = {"1": "wav", "2": "shaku", "3": "csv", "4": "midi"}
+        # output_type = None
+        # while output_type not in types:
+        #     print("Choose type of output")
+        #     output_type = input("(1 = wav, 2 = shaku, 3 = csv, 4 = midi 0 = quit) :").strip()
+        #     if output_type == "0":
+        #         exit()
+        # output_type = types[output_type]
+        output_type = "wav"
+        # count = -1
+        # while count != 0:
+        #     count = input("How many measures should be generated? (0 to quit)").strip()
+        #     try:
+        #         count = int(count)
+        #     except:
+        #         print("Please input an integer value")
+        #         continue
+        #     if count < 0:
+        #         print("Usage : 0 = quit, 1 or higher = generate measures")
+        #     elif count > 0:
+        #         self._generate_output(output_type, count)
+        #         print("Generation done. Quitting...")
+        #         exit(0)
+        self._generate_output(output_type, 1)
+        print("Generation done. Quitting...")
+        exit(0)
 
 class NonInteractive(Interface):
     def __init__(self):
