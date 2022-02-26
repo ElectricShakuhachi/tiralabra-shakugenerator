@@ -28,9 +28,6 @@ class ShakuGenerator:
         self.pitch_trie.feed_data(pitches)
         self.lenght_trie.feed_data(lenghts)
 
-        #DEBUG EVERY PART OF THIS
-
-
     def _get_random_start_data(self, type: str):
         if type == "pitch":
             return choice(self.pitch_range)
@@ -58,7 +55,7 @@ class ShakuGenerator:
         if len(previous) == 0:
             return self._get_random_start_data(type)
         if len(previous) > 3:
-            raise ValueError("Too long sequence given")
+            previous = previous[-3:]
         if type == "pitch":
             trie = self.pitch_trie
         elif type == "lenght":
