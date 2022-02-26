@@ -33,7 +33,6 @@ class ShakuGenerator:
             return choice(self.pitch_range)
         elif type == "lenght":
             thing = choice(self.lenght_range)
-            print(f"note lenght is {thing}")
             return(thing)
         else:
             raise ValueError("Requested unknown type of data")
@@ -84,15 +83,3 @@ class ShakuGenerator:
         pitch = self._get_next("pitch", previous["pitches"])
         lenght = self._get_next("lenght", previous["lenghts"])
         return (pitch, lenght)
-
-"""
-Right now when getting next we always return to the root node unless we find
-and exact match to the sequence.
--> change this so that if we don't find that sequence, we skip the first value
-and try again. If that all fails, we just get a random note since previous has
-disappeared.
-
-The root node doesn't seem to have a repeats["total"] value because now
-it fails for any time when there is more than one single note.
-
-"""

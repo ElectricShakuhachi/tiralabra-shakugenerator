@@ -22,7 +22,7 @@ class ShakuFiling:
         synth = FluidSynth()
         self.save_midi(data)
         source = os.getenv("SHAKUGEN_TMP_MIDI_FILE")
-        target = source[-3] + "wav"
+        target = source[:-3] + "wav"
         synth.midi_to_audio(source, target)
 
     def save_midi(self, data):

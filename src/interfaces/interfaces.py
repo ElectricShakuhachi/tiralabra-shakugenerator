@@ -40,6 +40,7 @@ class Interface:
             if left_in_measure <= 0:
                 measure_count -= 1
                 left_in_measure = int(os.getenv("SHAKUGEN_MEASURE_LENGHT"))
+        print("The following part was generated:")
         print(part)
         self._handle_output(part, output_type)
 
