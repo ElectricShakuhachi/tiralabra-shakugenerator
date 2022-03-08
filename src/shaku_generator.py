@@ -4,6 +4,7 @@ import glob
 from random import choice, randint
 from entities.trie import TrieTree
 from services.input_converter import ShakuConverter
+from auxiliary_rules import Ruleset
 
 class ShakuGenerator:
     """Class for generating musical notes based on previous sequences stored in a trie tree
@@ -19,6 +20,7 @@ class ShakuGenerator:
         self._populate_trees()
         self.pitch_range = list(range(int(os.getenv("SHAKUGEN_LOWEST_PITCH")), int(os.getenv("SHAKUGEN_HIGHEST_PITCH"))+1))
         self.lenght_range = [int(i) for i in os.getenv("SHAKUGEN_LENGHTS").split(",")]
+        self.auxiliary_rules = RuleSet()
 
     def _populate_trees(self):
         filelist = glob.glob(os.getenv("SHAKUGEN_TRAINING_FILES"))
@@ -52,7 +54,9 @@ class ShakuGenerator:
         """
 
         if len(previous) == 0:
-            return self._get_random_start_data(type)
+            result = self._get_random_start_data(type)
+            self.auxiliary_rules.add_note(result)
+            return result
         if len(previous) > 3:
             previous = previous[-3:]
         if type == "pitch":
@@ -77,6 +81,7 @@ class ShakuGenerator:
         for key, value in node.repeats.items():
             index -= value
             if index <= 0:
+                self.auxiliary_rules.add_note(key)
                 return key
 
     def generate_note(self, previous: dict):
