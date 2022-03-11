@@ -4,7 +4,7 @@ import glob
 from random import choice, randint
 from entities.trie import TrieTree
 from services.input_converter import ShakuConverter
-from auxiliary_rules import Ruleset
+from auxiliary_rules import RuleSet
 
 class ShakuGenerator:
     """Class for generating musical notes based on previous sequences stored in a trie tree
@@ -20,7 +20,7 @@ class ShakuGenerator:
         self._populate_trees()
         self.pitch_range = list(range(int(os.getenv("SHAKUGEN_LOWEST_PITCH")), int(os.getenv("SHAKUGEN_HIGHEST_PITCH"))+1))
         self.lenght_range = [int(i) for i in os.getenv("SHAKUGEN_LENGHTS").split(",")]
-        self.auxiliary_rules = RuleSet()
+        self.rules = {"pitch": RuleSet(), "lenght": RuleSet()}
 
     def _populate_trees(self):
         filelist = glob.glob(os.getenv("SHAKUGEN_TRAINING_FILES"))
@@ -55,8 +55,9 @@ class ShakuGenerator:
 
         if len(previous) == 0:
             result = self._get_random_start_data(type)
-            self.auxiliary_rules.add_note(result)
+            #self.rules[type] -> something maybe
             return result
+        all_previous = previous #might not need this actually.....................
         if len(previous) > 3:
             previous = previous[-3:]
         if type == "pitch":
@@ -74,17 +75,25 @@ class ShakuGenerator:
                 node = node.nodes[previous[i]]
             i += 1
         # trie tree seems to be empty - causing this error - problem in populating trees likely responsible.
-        try:
-            index = randint(1, node.repeats["total"])
-        except:
-            raise ValueError("Training data likely insufficient in trie")
-        for key, value in node.repeats.items():
-            index -= value
-            if index <= 0:
-                self.auxiliary_rules.add_note(key)
-                return key
+        for i in range(10): # try ten times -> but this would be faster if we'd just somehow skip off the unapplicable ones
+            print("NODE INFO:")
+            print(node.repeats)
+            try:
+                index = randint(1, node.repeats["total"])
+            except:
+                raise ValueError("Training data likely insufficient in trie")
+            for key, value in node.repeats.items():
+                if key == "total":
+                    continue
+                index -= value
+                if index <= 0:
+                    if self.rules[type].repetition_stop(key) < int(os.getenv(type.upper() + "_REP_STOP_WEIGHT")):
+                        return key
+        return self._get_random_start_data(type)
 
     def generate_note(self, previous: dict):
         pitch = self._get_next("pitch", previous["pitches"])
         lenght = self._get_next("lenght", previous["lenghts"])
+        if lenght == "total":
+            raise ValueError("Total found!")
         return (pitch, lenght)

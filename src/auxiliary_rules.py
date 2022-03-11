@@ -1,14 +1,23 @@
+from os import getenv
+from copy import copy
+
 class RuleSet:
     def __init__(self):
-        self.notes = []
-        self.last_note = None
-        self.applicability_scale = 1
+        self.prev_data = []
 
-    def add_note(self, note):
-        self.notes.append(note)
+    def repetition_stop(self, data: int):
+        data = copy(data)
+        count = 0
+        for i in range(len(self.prev_data) - 1, -1, -1):
+            if self.prev_data[i] == data:
+                count += 1
+            else:
+                break
+        self.prev_data.append(data)
+        return count
 
-    def applicability_scale(note):
-        if note == last_note:
-        while self.notes[i]
+    def repetition_weight(self, data):
+        pass
 
-    def applicability_absolute(note):
+    def applicability_absolute(data):
+        pass
