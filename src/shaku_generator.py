@@ -76,8 +76,8 @@ class ShakuGenerator:
             i += 1
         # trie tree seems to be empty - causing this error - problem in populating trees likely responsible.
         for i in range(10): # try ten times -> but this would be faster if we'd just somehow skip off the unapplicable ones
-            print("NODE INFO:")
-            print(node.repeats)
+            #print("NODE INFO:")
+            #print(node.repeats)
             try:
                 index = randint(1, node.repeats["total"])
             except:
