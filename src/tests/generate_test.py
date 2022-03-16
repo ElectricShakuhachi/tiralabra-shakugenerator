@@ -4,7 +4,7 @@ from entities.trie import TrieTree
 
 class TestShakuGenerator(unittest.TestCase):
     def setUp(self):
-        data = [62,65,65,63,62,62,63,64,62,67,89,65,83,63,63,63,61,63,63,63,80,63,63,63,80]
+        data = [[62,65,65,63,62,62,63,64,62,67,89,65,83,63,63,63,61,63,63,63,80,63,63,63,80]]
         self.trie = TrieTree()
         self.trie.feed_data(data)
         self.generator = ShakuGenerator(self.trie)

@@ -17,11 +17,14 @@ class ShakuConverter:
         return data_array
 
     def get_pitch_lists(self, filelist):
-        return(self._get_data_list(filelist, "pitch"))
+        """Return lists of note pitches, one list per file in given list"""
+        return self._get_data_list(filelist, "pitch")
 
     def get_lenght_lists(self, filelist):
+        """Return lists of note lenghts, one list per file in given list"""
         return self._get_data_list(filelist, "lenght")
 
     def convert_simple_dict_to_shaku(data: dict):
         for key, pitch in enumerate(data["pitches"]):
             lenght = data["lenghts"][key]
+        #this unfinished function is needed for additional feature in the future

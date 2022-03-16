@@ -55,9 +55,7 @@ class ShakuGenerator:
 
         if len(previous) == 0:
             result = self._get_random_start_data(type)
-            #self.rules[type] -> something maybe
             return result
-        all_previous = previous #might not need this actually.....................
         if len(previous) > 3:
             previous = previous[-3:]
         if type == "pitch":
@@ -74,10 +72,7 @@ class ShakuGenerator:
             else:
                 node = node.nodes[previous[i]]
             i += 1
-        # trie tree seems to be empty - causing this error - problem in populating trees likely responsible.
-        for i in range(10): # try ten times -> but this would be faster if we'd just somehow skip off the unapplicable ones
-            #print("NODE INFO:")
-            #print(node.repeats)
+        for i in range(10): # a sort of quickfix, try ten times. Result is ok, but a better solution would be easy to do with a bit of time
             try:
                 index = randint(1, node.repeats["total"])
             except:
@@ -92,6 +87,8 @@ class ShakuGenerator:
         return self._get_random_start_data(type)
 
     def generate_note(self, previous: dict):
+        """Return a tuple of pitch and lenght of next note based on given sequence of previous notes
+        """
         pitch = self._get_next("pitch", previous["pitches"])
         lenght = self._get_next("lenght", previous["lenghts"])
         if lenght == "total":

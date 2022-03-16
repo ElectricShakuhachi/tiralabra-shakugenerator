@@ -6,6 +6,7 @@ from shaku_generator import ShakuGenerator
 from services.filing import ShakuFiling
 
 class ShakuGeneratorInterfaceManager:
+    """Interface setter that selects correct interface"""
     def __init__(self, interface_type="plugin"):
         self.interfaces = {"cli": Cli, "plugin": NonInteractive}
         if interface_type not in self.interfaces:
@@ -17,6 +18,7 @@ class ShakuGeneratorInterfaceManager:
         self.interface.run()
 
 class Interface:
+    """Prototype to be used as parent class of different interface options for shakugenerator"""
     def __init__(self):
         self.generator = ShakuGenerator()
 
