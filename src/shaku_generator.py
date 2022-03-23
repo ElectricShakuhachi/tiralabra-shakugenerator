@@ -72,18 +72,17 @@ class ShakuGenerator:
             else:
                 node = node.nodes[previous[i]]
             i += 1
-        for i in range(10): # a sort of quickfix, try ten times. Result is ok, but a better solution would be easy to do with a bit of time
-            try:
-                index = randint(1, node.repeats["total"])
-            except:
-                raise ValueError("Training data likely insufficient in trie")
-            for key, value in node.repeats.items():
-                if key == "total":
-                    continue
-                index -= value
-                if index <= 0:
-                    if self.rules[type].repetition_stop(key) < int(os.getenv(type.upper() + "_REP_STOP_WEIGHT")):
-                        return key
+        try:
+            index = randint(1, node.repeats["total"])
+        except:
+            raise ValueError("Training data likely insufficient in trie")
+        for key, value in node.repeats.items():
+            if key == "total":
+                continue
+            index -= value
+            if index <= 0:
+                if self.rules[type].repetition_stop(key) < int(os.getenv(type.upper() + "_REP_STOP_WEIGHT")):
+                    return key
         return self._get_random_start_data(type)
 
     def generate_note(self, previous: dict):

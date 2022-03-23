@@ -18,17 +18,13 @@ Install dependencies with poetry:
 poetry install
 ```
 
-Application utilizes a list of integers in csv file, located at root directory and namec "training_data.csv"
-
-Training data can be changed by manually editing the list of midi numbers in the file. 
-
-Currently (end of week 3) the training data is too short - during project week 4 a longer, more adequate training data will be added to the same file.
-
-use invoke rule to run program by command:
+Use invoke rule to run program by command:
 
 ```bash
 poetry run invoke start
 ```
+
+[More detailed user guide](https://github.com/ElectricShakuhachi/tiralabra-shakugenerator/blob/main/documentation/user_guide.md)
 
 ## Testing
 
@@ -51,3 +47,5 @@ Run lint by:
 ```bash
 poetry run invoke lint
 ```
+
+[More detailed testing info](https://github.com/ElectricShakuhachi/tiralabra-shakugenerator/blob/main/documentation/testing.md)

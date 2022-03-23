@@ -1,5 +1,3 @@
-from os import getenv
-from copy import copy
 
 class RuleSet:
     def __init__(self):
@@ -14,13 +12,11 @@ class RuleSet:
         Returns:
             _type_: _description_
         """
-        data = copy(data)
         count = 0
-        for i in range(len(self.prev_data) - 1, -1, -1):
-            if self.prev_data[i] == data:
-                count += 1
-            else:
-                break
+        index = -1
+        while len(self.prev_data) >= abs(index) and self.prev_data[index] == data:
+            count += 1
+            index -= 1
         self.prev_data.append(data)
         return count
 

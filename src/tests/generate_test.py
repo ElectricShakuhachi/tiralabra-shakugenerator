@@ -60,24 +60,26 @@ class TestShakuGenerator(unittest.TestCase):
         for i in range(2, 100):
             pitches.append(i)
             lenghts.append(i)
-        for pitch, lenght in [(2, 2), (5, 2), (10, 4), (8, 2)]:
+        for pitch, lenght in [(1, 2), (5, 2), (10, 4), (8, 2)]:
             pitches.append(pitch)
             lenghts.append(lenght)
+        self.generator.pitch_trie.feed_data([pitches])
+        self.generator.lenght_trie.feed_data([lenghts])
 
-    # def test_generate_note_returns_right_note_with_high_probability_if_three_previous_with_match(self):
-    #     self._make_defined_trie()
-    #     values = []
-    #     previous = {"pitches": [2, 5, 10], "lenghts": [2, 2, 4]}
-    #     for i in range(500):
-    #         values.append(self.generator.generate_note(previous))
-    #     pitch_count = 0
-    #     lenght_count = 0
-    #     for note in values:
-    #         if note[0] == 8:
-    #             pitch_count += 1
-    #         if note[1] == 2:
-    #             lenght_count += 1
-    #     self.assertGreater(pitch_count, 100)
+    def test_generate_note_returns_right_note_with_high_probability_if_three_previous_with_match(self):
+        self._make_defined_trie()
+        values = []
+        previous = {"pitches": [1, 5, 10], "lenghts": [2, 2, 4]}
+        for i in range(500):
+            values.append(self.generator.generate_note(previous))
+        pitch_count = 0
+        lenght_count = 0
+        for note in values:
+            if note[0] == 8:
+                pitch_count += 1
+            if note[1] == 2:
+                lenght_count += 1
+        self.assertGreater(pitch_count, 499)
 
     # def test_generate_note_returns_one_integer_if_three_previous_with_match(self):
     #     self.assertIsInstance(self.generator.generate_note([65,63,62]), int)
