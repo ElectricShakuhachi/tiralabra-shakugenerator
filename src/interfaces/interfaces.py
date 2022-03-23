@@ -51,11 +51,11 @@ class Cli(Interface):
         super().__init__()
 
     def run(self):
-        types = {"1": "wav", "2": "shaku", "3": "csv", "4": "midi"}
+        types = {"1": "wav", "2": "csv", "3": "midi"}
         output_type = None
         while output_type not in types:
             print("Choose type of output")
-            output_type = input("(1 = wav, 2 = shaku, 3 = csv, 4 = midi 0 = quit) :").strip()
+            output_type = input("(1 = wav, 2 = csv, 3 = midi 0 = quit) :").strip()
             if output_type == "0":
                 exit()
         output_type = types[output_type]

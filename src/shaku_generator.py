@@ -34,8 +34,8 @@ class ShakuGenerator:
         if type == "pitch":
             return choice(self.pitch_range)
         elif type == "lenght":
-            thing = choice(self.lenght_range)
-            return(thing)
+            lenght = choice(self.lenght_range)
+            return(lenght)
         else:
             raise ValueError("Requested unknown type of data")
 
@@ -89,8 +89,10 @@ class ShakuGenerator:
     def generate_note(self, previous: dict):
         """Return a tuple of pitch and lenght of next note based on given sequence of previous notes
         """
-        pitch = self._get_next("pitch", previous["pitches"])
-        lenght = self._get_next("lenght", previous["lenghts"])
-        if lenght == "total":
-            raise ValueError("Total found!")
+        if not previous:
+            pitch = self._get_random_start_data("pitch")
+            lenght = self._get_random_start_data("lenght")
+        else:
+            pitch = self._get_next("pitch", previous["pitches"])
+            lenght = self._get_next("lenght", previous["lenghts"])
         return (pitch, lenght)

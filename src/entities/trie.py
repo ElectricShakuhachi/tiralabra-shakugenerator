@@ -32,32 +32,31 @@ class TrieTree:
         """
         self.root = TrieNode(None)
 
-    def _add_sequence(self, seq):
+    def _add_sequence(self, seq: list):
         if len(seq) != 4:
             raise ValueError("Sequences should contain four values")
         i = 0
         node = self.root
-        while i < 4:
-            if seq[i] not in node.nodes.items():
+        for i in range(len(seq)):
+            if seq[i] not in node.nodes:
                 node.repeats[seq[i]] = 1
                 node.nodes[seq[i]] = TrieNode(seq[i])
                 node = node.nodes[seq[i]]
             else:
                 node.repeats[seq[i]] += 1
                 node = node.nodes[seq[i]]
-            i += 1
 
-    def _mark_probabilities(self, node):
+    def _mark_totals(self, node: TrieNode):
         if len(node.repeats) != 0:
             node.repeats["total"] = sum(node.repeats.values())
         for i in node.nodes.values():
-            self._mark_probabilities(i)
+            self._mark_totals(i)
 
-    def _feed_one_list(self, midilist):
+    def _feed_one_list(self, midilist: list):
         for i in range(len(midilist) - 3):
             self._add_sequence(midilist[i:i+4])
 
-    def feed_data(self, list_of_midilists): #change name of this to "train tree" to emphasize fact that this is done once to prepare tree
+    def feed_data(self, list_of_midilists: list):
         """Parse data into every sequence of 4 and form a trie tree of them
 
         Args:
@@ -65,7 +64,7 @@ class TrieTree:
         """
         for midilist in list_of_midilists:
             self._feed_one_list(midilist)
-        self._mark_probabilities(self.root)
+        self._mark_totals(self.root)
 
     def __str__(self):
         trie_as_string = "################Trie Representation################\n"

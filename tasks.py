@@ -8,7 +8,7 @@ def start(ctx, count=30):
 @task
 def test(ctx):
     os.chdir('./src')
-    ctx.run("pytest")
+    ctx.run("pytest --color=yes")
 
 @task
 def coverage(ctx):

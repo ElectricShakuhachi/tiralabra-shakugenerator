@@ -27,19 +27,12 @@ Currently (end of week 3) the training data is too short - during project week 4
 use invoke rule to run program by command:
 
 ```bash
-poetry run invoke start --count=1
+poetry run invoke start
 ```
-
-Replace 1 with lenght of music to be generated (number of measures)
-
-When running without --count flag with integer, program will generate a default amount of 1 measure lenght of notes
 
 ## Testing
 
-More detailed testing documentation will be created.
-Basics of testing:
-
-run tests with:
+Run unit tests with:
 
 ```bash
 poetry run invoke test
@@ -52,9 +45,6 @@ poetry run invoke coverage-report
 ```
 
 Coverage report will be generate in html format to the folder "htmlcov" located under project root.
-
-NOTE: Accurate coverage is provided only by the invoke commands coverage and coverage-report, not in console when running invoke test,
-which appears to show lower coverage than actual.
 
 Run lint by:
 
