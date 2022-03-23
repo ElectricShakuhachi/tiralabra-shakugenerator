@@ -6,8 +6,10 @@ from entities.trie import TrieTree
 class TestShakuGenerator(unittest.TestCase):
     def setUp(self):
         self.generator = ShakuGenerator()
-        self.generator.pitch_trie = TrieTree()
-        self.generator.lenght_trie = TrieTree()
+        self.pitch_trie = TrieTree()
+        self.lenght_trie = TrieTree()
+        self.generator.pitch_trie = self.pitch_trie
+        self.generator.lenght_trie = self.lenght_trie
         pitches = []
         lenghts = []
         for i in range(25):
@@ -66,11 +68,12 @@ class TestShakuGenerator(unittest.TestCase):
         self.generator.pitch_trie.feed_data([pitches])
         self.generator.lenght_trie.feed_data([lenghts])
 
-    def test_generate_note_returns_right_note_with_high_probability_if_three_previous_with_match(self):
-        self._make_defined_trie()
+    def test_generate_note_always_returns_the_right_note_if_there_is_just_one_match_in_trie(self):
         values = []
         previous = {"pitches": [1, 5, 10], "lenghts": [2, 2, 4]}
-        for i in range(500):
+        for i in range(50):
+            self.generator = ShakuGenerator()
+            self._make_defined_trie()
             values.append(self.generator.generate_note(previous))
         pitch_count = 0
         lenght_count = 0
@@ -79,7 +82,7 @@ class TestShakuGenerator(unittest.TestCase):
                 pitch_count += 1
             if note[1] == 2:
                 lenght_count += 1
-        self.assertGreater(pitch_count, 499)
+        self.assertEqual(pitch_count, 50)
 
     # def test_generate_note_returns_one_integer_if_three_previous_with_match(self):
     #     self.assertIsInstance(self.generator.generate_note([65,63,62]), int)
