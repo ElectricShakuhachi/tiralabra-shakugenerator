@@ -4,5 +4,5 @@ htmlcov
 .vscode
 .coverage
 output.csv
-tmp_midi_output.wav
-tmp_midi_output.mid
+*.wav
+*.mid
