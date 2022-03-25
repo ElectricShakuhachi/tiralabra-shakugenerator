@@ -1,13 +1,10 @@
-import glob
 import os
-from services.input_converter import ShakuConverter
-from entities.trie import TrieTree
-from shaku_generator import ShakuGenerator
 from services.filing import ShakuFiling
+from shaku_generator import ShakuGenerator
 
 class ShakuGeneratorInterfaceManager:
     """Interface setter that selects correct interface"""
-    def __init__(self, interface_type="plugin"):
+    def __init__(self, interface_type: str="plugin"):
         self.interfaces = {"cli": Cli, "plugin": NonInteractive}
         if interface_type not in self.interfaces:
             raise ValueError("Unsupported interface type requested")
@@ -46,6 +43,8 @@ class Interface:
         print(part)
         self._handle_output(part, output_type)
 
+import sys
+
 class Cli(Interface):
     def __init__(self):
         super().__init__()
@@ -57,7 +56,7 @@ class Cli(Interface):
             print("Choose type of output")
             output_type = input("(1 = wav, 2 = csv, 3 = midi 0 = quit) :").strip()
             if output_type == "0":
-                exit()
+                sys.exit()
         output_type = types[output_type]
         count = -1
         while count != 0:
@@ -72,11 +71,13 @@ class Cli(Interface):
             elif count > 0:
                 self._generate_output(output_type, count)
                 print("Generation done. Quitting...")
-                exit(0)
+                count = 0
 
 class NonInteractive(Interface):
+    """Non interactive interface
+    To be developed later for personal use"""
     def __init__(self):
         super().__init__()
 
     def run(self):
-        pass # to be developed later
+        pass

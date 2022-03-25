@@ -30,7 +30,7 @@ class ShakuGenerator:
         self.pitch_trie.feed_data(pitches)
         self.lenght_trie.feed_data(lenghts)
 
-    def _get_random_start_data(self, type: str):
+    def _get_random_start_data(self, type: str) -> int:
         if type == "pitch":
             return choice(self.pitch_range)
         elif type == "lenght":
@@ -39,7 +39,7 @@ class ShakuGenerator:
         else:
             raise ValueError("Requested unknown type of data")
 
-    def _get_next(self, type: str, previous: list=[]):
+    def _get_next(self, type: str, previous: list=[]) -> int:
         """Returns a midi integer based on data in trie and data given
 
         Args:
@@ -85,7 +85,7 @@ class ShakuGenerator:
                     return key
         return self._get_random_start_data(type)
 
-    def generate_note(self, previous: dict):
+    def generate_note(self, previous: dict) -> tuple:
         """Return a tuple of pitch and lenght of next note based on given sequence of previous notes
         """
         if not previous:

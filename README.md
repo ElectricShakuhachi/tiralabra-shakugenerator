@@ -23,7 +23,7 @@ Use invoke rule to run program by command:
 poetry run invoke start
 ```
 
-[More detailed user guide](https://github.com/ElectricShakuhachi/tiralabra-shakugenerator/blob/main/documentation/user_guide.md)
+[Detailed user guide](https://github.com/ElectricShakuhachi/tiralabra-shakugenerator/blob/main/documentation/user_guide.md)
 
 ## Testing
 
@@ -47,4 +47,4 @@ Run lint by:
 poetry run invoke lint
 ```
 
-[More detailed testing info](https://github.com/ElectricShakuhachi/tiralabra-shakugenerator/blob/main/documentation/testing.md)
+[Details on tests](https://github.com/ElectricShakuhachi/tiralabra-shakugenerator/blob/main/documentation/testing.md)

@@ -3,7 +3,7 @@ class RuleSet:
     def __init__(self):
         self.prev_data = []
 
-    def repetition_stop(self, data: int):
+    def repetition_stop(self, data: int) -> int:
         """_summary_
 
         Args:

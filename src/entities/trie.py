@@ -17,7 +17,7 @@ class TrieNode:
         self.repeats = {}
 
     def __str__(self):
-        node_string = f"Node:\n" 
+        node_string = "Node:\n"
         node_string += f"Repeats: {self.repeats}\n"
         node_string += "Children:\n"
         for node in self.nodes:
@@ -35,16 +35,15 @@ class TrieTree:
     def _add_sequence(self, seq: list):
         if len(seq) != 4:
             raise ValueError("Sequences should contain four values")
-        i = 0
         node = self.root
-        for i in range(len(seq)):
-            if seq[i] not in node.nodes:
-                node.repeats[seq[i]] = 1
-                node.nodes[seq[i]] = TrieNode(seq[i])
-                node = node.nodes[seq[i]]
+        for value in seq:
+            if value not in node.nodes:
+                node.repeats[value] = 1
+                node.nodes[value] = TrieNode(value)
+                node = node.nodes[value]
             else:
-                node.repeats[seq[i]] += 1
-                node = node.nodes[seq[i]]
+                node.repeats[value] += 1
+                node = node.nodes[value]
 
     def _mark_totals(self, node: TrieNode):
         if len(node.repeats) != 0:

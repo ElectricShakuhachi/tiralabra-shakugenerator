@@ -29,8 +29,5 @@ class ShakuFiling:
 
     def save_midi(self, data):
         midi = self._generate_midi_track(data)
-        with open(os.getenv("SHAKUGEN_TMP_MIDI_FILE"), "wb") as f:
-            midi.writeFile(f)
-
-    def save_shaku(data):
-        pass
+        with open(os.getenv("SHAKUGEN_TMP_MIDI_FILE"), "wb") as file:
+            midi.writeFile(file)
