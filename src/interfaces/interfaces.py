@@ -1,4 +1,5 @@
 import os
+import sys
 from services.filing import ShakuFiling
 from shaku_generator import ShakuGenerator
 
@@ -38,12 +39,10 @@ class Interface:
             left_in_measure -= int(note[1])
             if left_in_measure <= 0:
                 measure_count -= 1
-                left_in_measure = int(os.getenv("SHAKUGEN_MEASURE_LENGHT"))
+                left_in_measure = int(os.getenv("SHAKUGEN_MEASURE_LENGHT")) + left_in_measure
         print("The following part was generated:")
         print(part)
         self._handle_output(part, output_type)
-
-import sys
 
 class Cli(Interface):
     def __init__(self):
