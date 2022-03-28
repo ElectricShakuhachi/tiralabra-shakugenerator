@@ -43,11 +43,8 @@ class ShakuGenerator:
         """Returns a midi integer based on data in trie and data given
 
         Args:
-            type: pitch if type of data retrieved is a pitch, lenght if lenght
-            previous: List of previous data in sequence. Defaults to None.
-
-        Raises:
-            ValueError: If given sequence is too long (more than 3)
+            type: pitch or lenght of musical note
+            previous: List of previous data in sequence. Defaults to an empty string.
 
         Returns:
             int: Random note if no sequence provided, otherwise note based on previous sequence data
@@ -75,7 +72,7 @@ class ShakuGenerator:
         try:
             index = randint(1, node.repeats["total"])
         except:
-            raise ValueError("Training data likely insufficient in trie")
+            return self._get_random_start_data(type)
         for key, value in node.repeats.items():
             if key == "total":
                 continue
@@ -87,6 +84,15 @@ class ShakuGenerator:
 
     def generate_note(self, previous: dict) -> tuple:
         """Return a tuple of pitch and lenght of next note based on given sequence of previous notes
+
+        Args:
+            previous (dict): Dictionary representation of previous notes as {
+                "pitches" : [list of pitches]
+                "lenghts" : [list of lenghts]
+            }
+
+        Returns:
+            tuple: (pitch, lenght) of generated musical note
         """
         if not previous:
             pitch = self._get_random_start_data("pitch")

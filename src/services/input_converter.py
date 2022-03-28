@@ -1,6 +1,7 @@
 import json
 
 class ShakuConverter:
+    """Class handling conversion of data in .shaku file to pitch and lenght lists"""
     def _convert_file(self, part, data_type):
         data = []
         for note in part["notes"]:

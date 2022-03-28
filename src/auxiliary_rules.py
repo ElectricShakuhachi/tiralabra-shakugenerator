@@ -1,16 +1,17 @@
 
 class RuleSet:
+    """Wrapper class for additional rules to restrict markov tree music generation"""
     def __init__(self):
         self.prev_data = []
 
     def repetition_stop(self, data: int) -> int:
-        """_summary_
+        """Returns count of how many times data has been repeated
 
         Args:
-            data (int): _description_
+            data (int): data point to compare with preceeding ones
 
         Returns:
-            _type_: _description_
+            int: Count of directly preceeding sequence of identical data
         """
         count = 0
         index = -1

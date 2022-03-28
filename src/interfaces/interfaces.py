@@ -12,6 +12,7 @@ class ShakuGeneratorInterfaceManager:
         self.interface_type = interface_type
 
     def start(self):
+        """Starts the interface"""
         self.interface = self.interfaces[self.interface_type]()
         self.interface.run()
 
@@ -27,9 +28,9 @@ class Interface:
             #data = ShakuConverter().convert_simple_dict_to_shaku(data)
             #ShakuFiling().save_shaku(data)
             print("Saving in .shaku not implemented yet")
-            exit()
+            sys.exit()
 
-    def _generate_output(self, output_type: str, measure_count: int=1):
+    def _get_note_data(self, measure_count: int=1):
         part = {"pitches": [], "lenghts": []}
         left_in_measure = int(os.getenv("SHAKUGEN_MEASURE_LENGHT"))
         while measure_count > 0:
@@ -42,13 +43,19 @@ class Interface:
                 left_in_measure = int(os.getenv("SHAKUGEN_MEASURE_LENGHT")) + left_in_measure
         print("The following part was generated:")
         print(part)
+        return part
+
+    def _generate_output(self, output_type: str, measure_count: int=1):
+        part = self._get_note_data(measure_count)
         self._handle_output(part, output_type)
 
 class Cli(Interface):
+    """Command line interface"""
     def __init__(self):
         super().__init__()
 
     def run(self):
+        """Starts the Cli interface"""
         types = {"1": "wav", "2": "csv", "3": "midi"}
         output_type = None
         while output_type not in types:
@@ -63,7 +70,7 @@ class Cli(Interface):
             try:
                 count = int(count)
             except:
-                print("Please input an integer value")
+                print("Please input an integer value.")
                 continue
             if count < 0:
                 print("Usage : 0 = quit, 1 or higher = generate measures")
@@ -73,10 +80,11 @@ class Cli(Interface):
                 count = 0
 
 class NonInteractive(Interface):
-    """Non interactive interface
-    To be developed later for personal use"""
+    """Non interactive interface"""
     def __init__(self):
         super().__init__()
 
-    def run(self):
-        pass
+    def run(self, measure_count: int):
+        """Runs the application non interactively
+        and returns the generated notes"""
+        return self._get_note_data(measure_count)

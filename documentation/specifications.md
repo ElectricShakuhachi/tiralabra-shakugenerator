@@ -17,7 +17,7 @@
 
 ### NOTE: 
 
-**The explanation below talks about additional functionalities, but for the purposes of the "harjoitustyö" -project, basic Markov chain music generation utilizing a trie-tree -structure is developed first and any additional features will be done later if there is time!**
+**The explanation below talks about additional functionalities, but for the purposes of the "harjoitustyö" -project, basic Markov chain music generation utilizing a trie-tree -structure is developed first and any additional features will be done later if there is time! Mentioned additional functionalities are mainly planned to make the program applicable for personal use**
 
 ### END NOTE
 
