@@ -53,11 +53,11 @@ The code coverage of some classes is quite low, but those are classes with very 
 
 The time complexity of music sequence generation is O(n), as illustrated with this chart, generated with "test_generate_note_time_complexity" test in unittests for ShakuGenerator class:
 
-<img src="https://github.com/ElectricShakuhachi/tiralabra-shakugenerator/blob/main/documentation/generation_time_complexity_stats.png" width="780">
+<img src="https://github.com/ElectricShakuhachi/tiralabra-shakugenerator/blob/main/documentation/generation_time_complexity_stats.png" width="560">
 
 
 The time complexity of training the trie tree is also O(n), as illustrated with this chart, similarly created with the "test_feed_data_time_complexity" test case in unittests for TrieTree class:
 
-<img src="https://github.com/ElectricShakuhachi/tiralabra-shakugenerator/blob/main/documentation/trie_population_time_stats.png" width="780">
+<img src="https://github.com/ElectricShakuhachi/tiralabra-shakugenerator/blob/main/documentation/trie_population_time_stats.png" width="560">
 
 The data generated in these test cases was written to a file, and copied to a chart for this representation.
