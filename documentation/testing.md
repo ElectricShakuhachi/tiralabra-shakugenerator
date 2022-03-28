@@ -37,6 +37,8 @@ As such, some tests include generating a defined trie structure so as to avoid a
 
 The tests utilize the pitch trie and the lenght trie input is coincidental - required by the shakugenerator class, but not utilized for the tests. The tests could be changed to utilize the lenght trie, but the result would be identical, as the lenght trie is not coded as a separate class and is never handled by any part of the application in a different manner to the pitch trie.
 
+The time complexity of the program for generating note sequences being limited to O(n) is verified by the "test_generate_note_time_complexity" test case, by running the algorithm with  
+
 ## Interfaces tests
 
 The test case "test_run_generates_correct_lenght_of_music" is designed to verify that the application produces the required lenght of output
@@ -46,3 +48,16 @@ The test case "test_run_generates_correct_lenght_of_music" is designed to verify
 <img src="https://github.com/ElectricShakuhachi/tiralabra-shakugenerator/blob/main/documentation/coverage.png" width="780">
 
 The code coverage of some classes is quite low, but those are classes with very limited complexity.
+
+## Time Complexity
+
+The time complexity of music sequence generation is O(n), as illustrated with this chart, generated with "test_generate_note_time_complexity" test in unittests for ShakuGenerator class:
+
+<img src="https://github.com/ElectricShakuhachi/tiralabra-shakugenerator/blob/main/documentation/generation_time_complexity_stats.png" width="780">
+
+
+The time complexity of training the trie tree is also O(n), as illustrated with this chart, similarly created with the "test_feed_data_time_complexity" test case in unittests for TrieTree class:
+
+<img src="https://github.com/ElectricShakuhachi/tiralabra-shakugenerator/blob/main/documentation/trie_population_time_stats.png" width="780">
+
+The data generated in these test cases was written to a file, and copied to a chart for this representation.

@@ -1,5 +1,6 @@
 import unittest
 import random
+import time
 from shaku_generator import ShakuGenerator
 from entities.trie import TrieTree
 
@@ -149,3 +150,19 @@ class TestShakuGenerator(unittest.TestCase):
             else:
                 values2[note] = 1
         self.assertNotEqual(values1[38], values2[38])
+
+    def test_generate_note_time_complexity(self):
+        statistics = {}
+        for note_count in [1, 2, 4, 8, 16, 32, 64]:
+            start = time.perf_counter()
+            for repeats in range(note_count):
+                previous = []
+                note = self.generator.generate_note(previous)
+                previous.append(note)
+            end = time.perf_counter()
+            statistics[note_count] = end - start
+        for i in [2, 4, 8, 16, 32]:
+            div1 = statistics[i] / statistics[i // 2]
+            div2 = statistics[i * 2] / statistics[i]
+            increase_comparison = abs(div2 - div1)
+            self.assertGreater(1.5, increase_comparison)

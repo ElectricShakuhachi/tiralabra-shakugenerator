@@ -1,4 +1,6 @@
 import unittest
+import random
+import time
 from entities.trie import TrieTree, TrieNode
 
 class TestTrieNode(unittest.TestCase):
@@ -118,3 +120,20 @@ class TestTrieTree(unittest.TestCase):
         total = sum(node.repeats.values())
         total -= node.repeats["total"]
         self.assertEqual(total, node.repeats["total"])
+
+    def test_feed_data_time_complexity(self):
+        statistics = {}
+        for data_count in [1, 2, 4, 8, 16, 32, 64]:
+            self.trie = TrieTree()
+            training_data = []
+            start = time.perf_counter()
+            for i in range(data_count):
+                training_data.append(random.choice(range(100)))
+            end = time.perf_counter()
+            statistics[data_count] = end - start
+        for i in [2, 4, 8, 16, 32]:
+            div1 = statistics[i] / statistics[i // 2]
+            div2 = statistics[i * 2] / statistics[i]
+            increase_comparison = abs(div2 - div1)
+            self.assertEqual(statistics[64], statistics[32])
+            self.assertGreater(1.5, increase_comparison)
