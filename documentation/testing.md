@@ -43,6 +43,6 @@ The test case "test_run_generates_correct_lenght_of_music" is designed to verify
 
 ## Coverage Report
 
-<img src="https://github.com/ElectricShakuhachi/tiralabra-shakugenerator/blob/main/documentation/coverage.png" width="360">
+<img src="https://github.com/ElectricShakuhachi/tiralabra-shakugenerator/blob/main/documentation/coverage.png" width="780">
 
 The code coverage of some classes is quite low, but those are classes with very limited complexity.
