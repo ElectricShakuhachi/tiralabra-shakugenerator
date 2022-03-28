@@ -60,4 +60,4 @@ The time complexity of training the trie tree is also O(n), as illustrated with 
 
 <img src="https://github.com/ElectricShakuhachi/tiralabra-shakugenerator/blob/main/documentation/trie_population_time_stats.png" width="560">
 
-The data generated in these test cases was written to a file, and copied to a chart for this representation.
+The data generated in these test cases was written to a file, and copied to a chart for this representation. The fact that the statistics show that the program takes a slightly longer time to generate just one note rather than two is probably due to the fact that the trie class generates the first note randomly, and the pseudo-random number function or parts of the code surrounding it take more time than generating the subsequent notes according to the core algorithm. Another possibility for this is some caching making the subsequent runs slightly faster.
