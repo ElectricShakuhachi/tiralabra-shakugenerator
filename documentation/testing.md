@@ -26,7 +26,7 @@ Tests on TrieTree and ShakuGenerator -classes are important since all of the com
 
 ## TrieTree tests
 
-The tests on TrieTree class verify the general usage of the class and its functions for generating the trie data structure implementation based on the training data. Even though the integers fed to the tests are corresponding to regular shakuhachi pitch integers, the trie tree implementation has no dependency on the range of the provided integers, and as such, could be filled with any type of sequence, including sequences containing data other than integers.
+The tests on TrieTree class verify the general usage of the class and its functions for generating the trie data structure implementation based on the training data. Even though the integers fed to the tests are corresponding to regular shakuhachi pitch integers, the trie tree implementation has no dependency on the range of the provided integers, and as such, could be filled with any type of sequence, including sequences containing data other than integers. (although method argument type annotations might need to be edited)
 
 ## ShakuGenerator tests
 
