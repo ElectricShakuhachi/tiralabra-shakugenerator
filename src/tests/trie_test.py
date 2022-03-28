@@ -135,4 +135,4 @@ class TestTrieTree(unittest.TestCase):
             div1 = statistics[i] / statistics[i // 2]
             div2 = statistics[i * 2] / statistics[i]
             increase_comparison = abs(div2 - div1)
-            self.assertGreater(1.5, increase_comparison)
+            self.assertGreater(2, increase_comparison)
