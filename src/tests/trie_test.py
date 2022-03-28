@@ -127,7 +127,7 @@ class TestTrieTree(unittest.TestCase):
             self.trie = TrieTree()
             training_data = []
             start = time.perf_counter()
-            for i in range(data_count):
+            for i in range(data_count * 4):
                 training_data.append(random.choice(range(100)))
             end = time.perf_counter()
             statistics[data_count] = end - start
@@ -135,5 +135,4 @@ class TestTrieTree(unittest.TestCase):
             div1 = statistics[i] / statistics[i // 2]
             div2 = statistics[i * 2] / statistics[i]
             increase_comparison = abs(div2 - div1)
-            self.assertEqual(statistics[64], statistics[32])
             self.assertGreater(1.5, increase_comparison)
